@@ -4,8 +4,10 @@ import ProtectedRoute from './components/common/ProtectedRoute'
 import Header from './components/layouts/Header'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
+import MovieDetailPage from './pages/MovieDetailPage'
 import ProfilePage from './pages/ProfilePage'
 import RegisterPage from './pages/RegisterPage'
+import SeatMapPage from './pages/SeatMapPage'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,6 +22,8 @@ function Layout() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/movies/:movieId" element={<MovieDetailPage />} />
+          <Route path="/seat-map/:showtimeId" element={<SeatMapPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
 
