@@ -18,6 +18,12 @@ export default function Header() {
         </Link>
 
         <nav className="flex items-center gap-4">
+          <Link
+            to="/"
+            className="text-sm text-zinc-300 hover:text-white transition-colors"
+          >
+            Discover
+          </Link>
           {accessToken ? (
             <>
               <span className="text-sm text-zinc-400">

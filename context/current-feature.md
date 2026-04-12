@@ -2,7 +2,7 @@
 
 <!-- Feature Name -->
 
-User Authentication & Profile
+Movie & Showtime Discovery
 
 ## Status
 
@@ -14,18 +14,20 @@ Completed
 
 <!-- Goals & requirements -->
 
-- User registration with email and password.
-- JWT-based login with access/refresh token flow.
-- Role-based access control: `CUSTOMER`, `ADMIN`, `STAFF`.
-- Protected routes on the frontend based on user role.
-- Profile page: view and update name, email, and password.
-- Session persistence across page reloads (stored securely in memory or httpOnly cookie).
+- Home page displays two sections: "Now Showing" and "Coming Soon" as a movie grid.
+- Hero carousel at the top highlights featured or trending movies.
+- Each movie card shows: poster, title, genre, rating, and duration.
+- Movie Detail page includes trailer modal, synopsis, cast info, release date, and format.
+- A date-picker to browse available showtimes.
+- Showtime list filters by: date, cinema location, and format.
+- Selecting a showtime navigates the user to the Seat Map.
+- Backend endpoints: `GET /movies`, `GET /movies/{id}`, `GET /movies/{id}/showtimes`.
 
 ## Notes
 
 <!-- Any extra notes -->
 
-Foundation for all other features — Booking, Admin Panel, and QR Scanner all depend on authenticated sessions. References the CineFast User model and Users persona table.
+Entry point of the customer journey from browsing movies to choosing a showtime before seat selection. Depends on the `Movie`, `Showtime`, `Cinema`, and `Room` data models, and feeds directly into the Interactive Seat Selection feature.
 
 ## History
 
@@ -36,3 +38,5 @@ Foundation for all other features — Booking, Admin Panel, and QR Scanner all d
 - 2026-04-06: Marked the current feature as `Completed` and cleared the active feature name, goals, and notes block.
 - 2026-04-10: Set current feature to `User Authentication & Profile` and marked status as `In Progress`.
 - 2026-04-12: Marked `User Authentication & Profile` as `Completed`.
+- 2026-04-12: Set current feature to `Movie & Showtime Discovery` and marked status as `In Progress`.
+- 2026-04-12: Marked `Movie & Showtime Discovery` as `Completed`.
