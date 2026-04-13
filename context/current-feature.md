@@ -2,7 +2,7 @@
 
 <!-- Feature Name -->
 
-Movie & Showtime Discovery
+Interactive Seat Selection
 
 ## Status
 
@@ -14,20 +14,21 @@ Completed
 
 <!-- Goals & requirements -->
 
-- Home page displays two sections: "Now Showing" and "Coming Soon" as a movie grid.
-- Hero carousel at the top highlights featured or trending movies.
-- Each movie card shows: poster, title, genre, rating, and duration.
-- Movie Detail page includes trailer modal, synopsis, cast info, release date, and format.
-- A date-picker to browse available showtimes.
-- Showtime list filters by: date, cinema location, and format.
-- Selecting a showtime navigates the user to the Seat Map.
-- Backend endpoints: `GET /movies`, `GET /movies/{id}`, `GET /movies/{id}/showtimes`.
+- Visual grid representation of the theater layout based on the room's `seatMap` JSON config.
+- Color-coded seat states: Available, Selected, Locked, and Sold.
+- Real-time seat locking via `POST /seats/lock` with a Redis key and 5-minute TTL.
+- If a seat is already locked or sold, return `409 Conflict` and show "Seat Unavailable".
+- A 5-minute countdown timer is displayed while the user holds their selected seats.
+- When the timer expires or the user navigates away, the lock is released via `DELETE /seats/lock`.
+- Floating action bar at the bottom shows total price and a "Proceed to Checkout" button.
+- Supports pinch-to-zoom on mobile for large theater layouts.
+- Backend endpoints: `GET /showtimes/{id}/seats`, `POST /seats/lock`, `DELETE /seats/lock`.
 
 ## Notes
 
 <!-- Any extra notes -->
 
-Entry point of the customer journey from browsing movies to choosing a showtime before seat selection. Depends on the `Movie`, `Showtime`, `Cinema`, and `Room` data models, and feeds directly into the Interactive Seat Selection feature.
+Allows users to visually select seats from the theater layout while preventing seat stealing through temporary Redis-based locks. Redis is critical here because locks must live outside SQL and expire automatically. This feature feeds directly into the Booking & Payment checkout flow.
 
 ## History
 
@@ -40,3 +41,5 @@ Entry point of the customer journey from browsing movies to choosing a showtime 
 - 2026-04-12: Marked `User Authentication & Profile` as `Completed`.
 - 2026-04-12: Set current feature to `Movie & Showtime Discovery` and marked status as `In Progress`.
 - 2026-04-12: Marked `Movie & Showtime Discovery` as `Completed`.
+- 2026-04-12: Set current feature to `Interactive Seat Selection` and marked status as `In Progress`.
+- 2026-04-13: Marked `Interactive Seat Selection` as `Completed`.

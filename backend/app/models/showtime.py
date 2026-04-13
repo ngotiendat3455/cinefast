@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import DateTime, ForeignKey, Numeric, String
+from sqlalchemy import JSON, DateTime, ForeignKey, Numeric, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base
@@ -17,6 +17,7 @@ class Showtime(Base):
     start_time: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False, index=True)
     end_time: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     price: Mapped[float] = mapped_column(Numeric(10, 2), nullable=False)
+    sold_seats: Mapped[list[str]] = mapped_column(JSON, nullable=False, default=list)
 
     movie = relationship("Movie", back_populates="showtimes")
     room = relationship("Room", back_populates="showtimes")
